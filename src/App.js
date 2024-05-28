@@ -1,22 +1,21 @@
 import React from "react";
 import Greeting from './components/Greeting'
 
-
+const userArray =['John', 'Alex', 'Ivan', 'Jane','Jake']
 
 class App extends React.Component {
   constructor(props){
     super(props);
 }
 
+userMap =()=> userArray.map((name)=> <Greeting userName={name} />)
+
+
 
   render() {
     return (
       <section>
-        <Greeting userName='John' userF='Doe' />
-        <Greeting userName='John' userF='Doe' />
-        <Greeting userName='Alex' userF='Doe' />
-        <Greeting userName='John' userF='Doe' />
-        <Greeting userName='Ivan' userF='Doe' />
+        {this.userMap()}
       </section>
     )
   }

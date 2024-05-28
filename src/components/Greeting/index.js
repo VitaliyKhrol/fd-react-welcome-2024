@@ -20,13 +20,13 @@ class Greeting extends React.Component {
 
     render(){
         const{isGreeting} = this.state;
-        const {userName, userF} =this.props;
+        const {userName} =this.props;
 
         const greetingText = isGreeting ? 'Hello' : 'Go to'
 
         return(
             <div>
-                <h2 onClick={this.changeGreeting}>{greetingText}, {`${userName}  ${userF}`}</h2>
+                <h2 onClick={this.changeGreeting}>{greetingText}, {userName}</h2>
             </div>
         )
     }
