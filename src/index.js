@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import OurComponent from './OurComponent';
+import Section from './OurComponent';
+import {API_BASE, getHello} from './constants';
 // import App from './App';
 
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-//  React.createElement(OurComponent,{today:'wansday'})
-<div>
-  <OurComponent today="wansday" day ="gffhhhf"/>
-  <OurComponent today="fdffghdjd"/>
-</div>
+const root = ReactDOM.createRoot(document.querySelector('#root'));
 
+root.render(
+
+  <Section />
+ 
 );
 
 
