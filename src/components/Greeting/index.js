@@ -2,6 +2,7 @@
 import React from "react";
 
 
+
 class Greeting extends React.Component {
     constructor(props){
         super(props);
@@ -22,7 +23,7 @@ class Greeting extends React.Component {
         const{isGreeting} = this.state;
         const {userName} =this.props;
 
-        const greetingText = isGreeting ? 'Hello' : 'Go to'
+        const greetingText = isGreeting ? 'Hello' : 'Bye - bye'
 
         return(
             <div>
