@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { format,addSeconds } from 'date-fns';
 
 
 class Timer extends Component {
@@ -13,11 +14,9 @@ class Timer extends Component {
     start =()=>{
         this.intervalId = setInterval(()=>{
          const {time} =this.state;
-         const date = new Date(time.getTime());
-         const seconds = time.getSeconds();
-         date.setSeconds(seconds+1)
+         const newdate =addSeconds(time,1)
              this.setState({
-                time: date
+                time: newdate
              })
 
         },1000 );
@@ -41,7 +40,7 @@ class Timer extends Component {
         const {time} =this.state;
         return (
             <div>
-                <h1>{time.toTimeString()}</h1>
+                <h1>{format(time, 'HH:mm:ss')}</h1>
                 <button onClick={this.start}>Start</button>
                 <button onClick={this.stop}>Stop</button>
             </div>
