@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 
+
 class Timer extends Component {
     constructor(props){
         super(props);
         this.state={
-            count:0,
+            time: new Date(0,0,0,0,0,0,0)
         }
         this.intervalId=null;
     }
 
     start =()=>{
         this.intervalId = setInterval(()=>{
-         const {count} =this.state   
+         const {time} =this.state;
+         const date = new Date(time.getTime());
+         const seconds = time.getSeconds();
+         date.setSeconds(seconds+1)
              this.setState({
-             count: count+1,
-        })
+                time: date
+             })
+
         },1000 );
      
     }
 
     componentDidMount(){
-        this.start();
+        // this.start();
     }
 
     stop=()=>{
@@ -33,10 +38,12 @@ class Timer extends Component {
 
     
     render() {
+        const {time} =this.state;
         return (
             <div>
-                <h1>{this.state.count}</h1>
-                <button onClick={this.stop}>Start</button>
+                <h1>{time.toTimeString()}</h1>
+                <button onClick={this.start}>Start</button>
+                <button onClick={this.stop}>Stop</button>
             </div>
         );
     }
