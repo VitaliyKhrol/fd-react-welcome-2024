@@ -9,7 +9,7 @@ class UserCard extends React.Component {
 
     render() {
         const { user: {name: userName, profilePicture: userPicture, description:userDescription}} = this.props;
-        console.log(this.props)
+      
         return (
 
             <div className="card-wrapper">

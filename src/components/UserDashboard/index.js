@@ -14,7 +14,7 @@ class UserDashboard extends Component {
     }
 
 
-    userMap = () => this.state.users.map((userObj) => < UserCard user={userObj} userkey={userObj.id} />)
+    userMap = () => this.state.users.map((userObj) => < UserCard user={userObj} key={userObj.id} />)
 
     sortUsers = () => {
         console.log(this.state)
