@@ -1,14 +1,14 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
-class Sibling extends Component {
-    render() {
-        return (
-            <h2>
-                This lamp is  {this.props.toogleText}
-            </h2>
-        );
-    }
+const Sibling = (props) => {
+        
+    return (
+        <h2>
+                This lamp is  {props.toogleText? 'on': 'off'}
+        </h2>
+    );
 }
+
 
 export default Sibling;

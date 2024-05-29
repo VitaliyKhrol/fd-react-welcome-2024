@@ -6,14 +6,14 @@ class Scene extends Component {
     constructor(props){
         super(props);
         this.state ={
-            toogler: 'on',
+            toogler: true,
         }
     }
 
 
-    callbackState =(data)=>{
+    callbackState =()=>{
        this.setState({
-        toogler:data
+        toogler:!this.state.toogler
        })
 
     }
@@ -22,7 +22,7 @@ class Scene extends Component {
     render() {
         return (
             <>
-              <Lamp lampText='cool lamp' callbackParent ={this.callbackState}/>
+              <Lamp toogleState={this.state.toogler} callbackParent ={this.callbackState}/>
               <Sibling toogleText = {this.state.toogler}/>
             </>
       
