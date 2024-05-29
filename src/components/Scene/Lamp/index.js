@@ -11,13 +11,23 @@ class Lamp extends Component {
     }
 
 
+    toogle= ()=>{
+        this.setState({
+            on:!this.state.on 
+        });
+        this.props.callbackParent(this.state.on ? 'off' : 'on')
+    }
+
+
+
 
     render() {
         const classNames = this.state.on ? 'lamp-on' : 'lamp-off';
         return (
             <>
                 <div className={classNames}></div>
-                <button onClick={() => (this.setState({on:!this.state.on }))}>Toggle</button>
+                <p>{this.props.lampText}</p>
+                <button onClick={this.toogle}>Toggle</button>
             </>
 
         );
