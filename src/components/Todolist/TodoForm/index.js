@@ -21,9 +21,9 @@ class TodoForm extends Component {
         this.setState({
             todo:''
         })
-
     }
-  
+
+    
    
     render() {
         return (

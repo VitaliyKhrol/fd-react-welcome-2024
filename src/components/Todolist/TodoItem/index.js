@@ -2,9 +2,17 @@ import React from 'react';
 
 
 const TodoItem = (props) => {
-    console.log(props)
+
+
+    const deleteHandler =()=>{
+        console.log(props)
+        const {id,deleteCallback}= props;
+        deleteCallback(id);
+    }
+
+   
     return (
-       <li> {props.textItem}</li>
+       <li> {props.textItem} <button onClick={deleteHandler}>x</button></li>
     );
 }
 
