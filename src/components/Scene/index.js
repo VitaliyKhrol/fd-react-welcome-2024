@@ -15,7 +15,6 @@ class Scene extends Component {
        this.setState({
         toogler:!this.state.toogler
        })
-
     }
     
     
@@ -25,7 +24,6 @@ class Scene extends Component {
               <Lamp toogleState={this.state.toogler} callbackParent ={this.callbackState}/>
               <Sibling toogleText = {this.state.toogler}/>
             </>
-      
         );
     }
 }
