@@ -5,13 +5,26 @@ class TodoForm extends Component {
         super(props);
         this.state={
             todo:'',
-            list:[]
-        }
+          }
     }
     
-  
-
     
+    changeHandler = ({ target: { value, name } }) => {
+        this.setState({
+            [name]: value
+        })
+    }
+
+    submitHandler = (event) => {
+        event.preventDefault();
+        this.props.sendDataToParent(this.state.todo);
+        this.setState({
+            todo:''
+        })
+
+    }
+  
+   
     render() {
         return (
             <form onSubmit={this.submitHandler}>
