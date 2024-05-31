@@ -5,7 +5,6 @@ const TodoItem = (props) => {
 
 
     const deleteHandler =()=>{
-        console.log(props)
         const {id,deleteCallback}= props;
         deleteCallback(id);
     }
