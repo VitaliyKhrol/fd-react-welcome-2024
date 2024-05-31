@@ -62,12 +62,6 @@ class TodoForm extends Component {
 
 
 }
-function cx(objectClassNames) {
-    const array = Object.entries(objectClassNames);
-    const arraySort = array.filter(([cln, condition]) => condition);
-    const mapped = arraySort.map(([cln, condition]) => cln);
-    return mapped.join(' ')
-}
 
 
 export default TodoForm;
