@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import UserCard from '../UserCard';
+import UsersList from '../UsersList';
 import Spiner from '../Spiner';
 import {getUsers} from '../../api'
 
@@ -11,18 +11,24 @@ class UserDashboard extends Component {
         super(props);
         this.state = {
             users: [],
-            isSort: true,
             error: null,
-            isFetching: true
+            isFetching: true,
+            page: 1
         }
     }
     componentDidMount() {
         this.getData();
+    }
 
+    componentDidUpdate(prevProps,prevState){
+        if (this.state.page !== prevState.page){
+           this.getData();  
+        }
     }
 
     getData = () => {
-       getUsers()
+        const {page} = this.state;
+       getUsers({page})
             .then((data) => {
                 this.setState({
                     users: data.results,
@@ -40,28 +46,36 @@ class UserDashboard extends Component {
             })
     }
 
-    userMap = () => this.state.users.map((userObj) => < UserCard user={userObj} key={userObj.email} />);
 
-    sortUsers = () => {
-        const newUsers = [...this.state.users];
-        newUsers.sort((a, b) => (a.name > b.name && this.state.isSort ? 1 : -1));
-
+    next =()=>{
+        const {page} = this.state;
         this.setState({
-            users: newUsers,
-            isSort: !this.state.isSort
+            page: page +1
         })
+
+    }
+
+    prev =()=>{
+        const {page} = this.state;
+        if (this.state.page >1){
+            this.setState({
+           page:page-1
+        }) 
+        }        
+
     }
 
 
     render() {
-        const { users, error, isFetching } = this.state;
+        const { users, error, isFetching, page } = this.state;
 
         return (
             <section className="root">
-                <button onClick={this.sortUsers}>Sorted</button>
-                {users && (<div className="card-container">
-                    {this.userMap()}
-                </div>)}
+                <button onClick={this.prev}>{'<'}</button>
+                {page}
+                <button onClick={this.next}>{'>'}</button>
+           
+                {users && <UsersList usersList={this.state.users}/>}
                 {error && <div>{error.message}</div>}
                 {isFetching && <Spiner />}
             </section>
