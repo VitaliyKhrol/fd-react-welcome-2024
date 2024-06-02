@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {userData} from "./userData";
+
 import UserCard from '../UserCard';
+import Spiner from '../Spiner';
+import {getUsers} from '../../api'
 
 
 
@@ -8,16 +10,39 @@ class UserDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: userData,
+            users: [],
             isSort: true,
+            error: null,
+            isFetching: true
         }
     }
+    componentDidMount() {
+        this.getData();
 
+    }
 
-    userMap = () => this.state.users.map((userObj) => < UserCard user={userObj} key={userObj.id} />)
+    getData = () => {
+       getUsers()
+            .then((data) => {
+                this.setState({
+                    users: data.results,
+                 })
+            }).catch((error) => {
+                this.setState({
+                    error: error,
+                })
+
+            })
+            .finally(()=>{
+                this.setState({
+                    isFetching: false,
+                })
+            })
+    }
+
+    userMap = () => this.state.users.map((userObj) => < UserCard user={userObj} key={userObj.email} />);
 
     sortUsers = () => {
-        console.log(this.state)
         const newUsers = [...this.state.users];
         newUsers.sort((a, b) => (a.name > b.name && this.state.isSort ? 1 : -1));
 
@@ -29,13 +54,16 @@ class UserDashboard extends Component {
 
 
     render() {
+        const { users, error, isFetching } = this.state;
+
         return (
             <section className="root">
                 <button onClick={this.sortUsers}>Sorted</button>
-                <div className="card-container">
+                {users && (<div className="card-container">
                     {this.userMap()}
-                </div>
-
+                </div>)}
+                {error && <div>{error.message}</div>}
+                {isFetching && <Spiner />}
             </section>
         );
     }

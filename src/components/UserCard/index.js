@@ -8,17 +8,18 @@ class UserCard extends React.Component {
     }
 
     render() {
-        const { user: {name: userName, profilePicture: userPicture, description:userDescription}} = this.props;
+      
+        const { user: {name: {first,last}, picture: {medium} , email}} = this.props;
       
         return (
 
             <div className="card-wrapper">
               <div className="images-wrapper"> 
-                   <img className="avatar" alt="" src={userPicture} ></img>n
+                   <img className="avatar" alt="" src={medium} ></img>n
               </div>
                  
-                    <h2>{userName}</h2>
-                    <p>{userDescription}</p>
+                    <h2>{first} {last}</h2>
+                    <p>{email}</p>
                     <button>Click</button>
             </div>
 
