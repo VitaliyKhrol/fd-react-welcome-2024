@@ -72,7 +72,7 @@ class UserDashboard extends Component {
         return (
             <section className="root">
                 <button onClick={this.prev}>{'<'}</button>
-                {page}
+                {  page  }
                 <button onClick={this.next}>{'>'}</button>
            
                 {users && <UsersList usersList={this.state.users}/>}
