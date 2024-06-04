@@ -14,8 +14,8 @@ constructor (props) {
 
     }
 
-    mapProducts =()=>{
-       return this.state.products.map(product =><li key={product.id}>  {product.title} -- {product.price}</li> )}
+    mapProducts =()=>
+      this.state.products.map(product => <li key={product.id}>  {product.title} -- {product.price}</li> )
     
     getData = () => {
         const {page} = this.state;
