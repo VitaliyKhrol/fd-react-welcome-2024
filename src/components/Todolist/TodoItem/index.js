@@ -15,16 +15,19 @@ const TodoItem = (props) => {
         <li> {props.textItem} <button onClick={deleteHandler}>x</button></li>
     );
 
- }   
-    TodoItem.propTypes = {
+}
+
+TodoItem.defaultProps = {
+    textItem: 'Default text',
+    deleteCallback: () => {},
+    id: 0
+}
+
+TodoItem.propTypes = {
     id: PropTypes.number.isRequired,
     textItem: PropTypes.string,
     deleteCallback: PropTypes.func.isRequired
 }
-
-
-
-
 
 
 export default TodoItem;
