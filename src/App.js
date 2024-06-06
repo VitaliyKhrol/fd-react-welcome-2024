@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import TodoItem from './components/Todolist/TodoItem'
+import UserCard from "./components/UserCard";
 
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
 
     return (
       <>
-        <TodoItem />
+        <UserCard/>
       </>
     )
   }
