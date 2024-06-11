@@ -2,6 +2,7 @@ import React from "react";
 
 
 import UserCard from "./components/UserCard";
+import WindowResazer from "./components/WindowResazer";
 
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
 
     return (
       <>
-        <UserCard/>
+      <WindowResazer/>
       </>
     )
   }
