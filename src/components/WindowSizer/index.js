@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class WindowResazer extends Component {
+class WindowSizer extends Component {
 
 constructor (props){
     super(props)
@@ -27,15 +27,8 @@ resizeHadler=()=>{
 
 
     render() {
-        const {x,y} = this.state
-        return (
-            <div>
-                <section>{x}</section>
-                <section>{y}</section>
-                
-            </div>
-        );
+        return this.props.children(this.state)
     }
 }
 
-export default WindowResazer;
+export default WindowSizer;
