@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "brand" : "Samsung",
+        "model": "S10",
+        "price": 400
+    },
+    {
+        "id": 2,
+        "brand" : "iPhone",
+        "model": "12Plus",
+        "price": 500
+    },
+    {
+        "id": 3,
+        "brand" : "Nokia",
+        "model": "S10",
+        "price": 250
+    },
+    {
+        "id": 4,
+        "brand" : "Xiaomi",
+        "model": "Mi",
+        "price": 600
+    }
+]
