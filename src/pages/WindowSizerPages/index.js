@@ -5,14 +5,12 @@ const WindowSizerPages = () => {
 
     return (
         <WindowSizer>
-            {(state) => {
-                const { x, y } = state;
-                return (
+            {({ x, y }) => (
                     <div>
                         <section> Current width: {x} px</section>
                         <section> Current height: {y} px</section>
-                    </div>)
-            }}
+                    </div>
+            )}
         </WindowSizer>
 
     );
