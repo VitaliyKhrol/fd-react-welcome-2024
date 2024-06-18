@@ -10,11 +10,11 @@ class CounterPage extends Component {
         }
     }
 
-changeHandler=({target:{value,name}})=>{
-    this.setState({
-        [name]: Number(value),
-})
-}
+    changeHandler = ({ target: { value, name } }) => {
+        this.setState({
+            [name]: Number(value),
+        })
+    }
 
     render() {
         const { inputValue } = this.state;
@@ -30,7 +30,21 @@ changeHandler=({target:{value,name}})=>{
 
                 />
                 <p>{inputValue}</p>
-                <Counter step={inputValue} />
+                <Counter step={inputValue}>
+                    {(increment,decrement,state) => {
+                        return (
+                            <div>
+                                <h1>{state.count}</h1>
+                                <button onClick={increment}>+</button>
+                                <button onClick={decrement}>-</button>
+                            </div>
+                        )
+                    }
+                    }
+
+
+
+                </Counter>
             </div>
         );
     }
