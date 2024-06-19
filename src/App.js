@@ -23,6 +23,12 @@ class App extends React.Component {
     }
   }
 
+  changeThemeCallback =(theme)=>{
+    this.setState({
+      theme: theme
+    })
+  }
+
   logOutCallback = () => {
     this.setState({
       user: {}
@@ -33,7 +39,7 @@ class App extends React.Component {
     const {user,theme} = this.state;
 
     return (
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={[theme,this.changeThemeCallback]}>
         < UserContext.Provider value={[user, this.logOutCallback]} >
           <Header />
           <Tree />
