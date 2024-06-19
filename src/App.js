@@ -1,8 +1,12 @@
 import React from "react";
 // import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Tree from './components/Tree';
-import UserContext from "./contexts";
+import UserContext from "./contexts/UserContext";
+import ThemeContext from "./contexts/ThemeContext";
+import Header from "./components/Header";
+import CONSTANTS  from "./constants";
 
+const {THEMES}= CONSTANTS;
 
 
 class App extends React.Component {
@@ -14,23 +18,27 @@ class App extends React.Component {
         lastName: 'Doe',
         email: 'www@gmail.com',
         avatar: 'https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg'
-      }
+      },
+      theme: THEMES.DARK,
     }
   }
 
-  logOutCallback=()=>{
+  logOutCallback = () => {
     this.setState({
-      user:{}
+      user: {}
     })
   }
 
   render() {
-    console.log(UserContext)
+    const {user,theme} = this.state;
 
-    return(
-    < UserContext.Provider value={[this.state.user, this.logOutCallback]} >
-      <Tree />
-    </UserContext.Provider>
+    return (
+      <ThemeContext.Provider value={theme}>
+        < UserContext.Provider value={[user, this.logOutCallback]} >
+          <Header />
+          <Tree />
+        </UserContext.Provider>
+      </ThemeContext.Provider>
     )
   }
 }
