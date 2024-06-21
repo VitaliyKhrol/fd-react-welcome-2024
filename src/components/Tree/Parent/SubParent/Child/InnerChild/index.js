@@ -1,24 +1,21 @@
-import UserContext from "../../../../../../contexts/UserContext";
+
+import {withUser} from '../../../../../../HOCs/withUser'
 
 
-
-const InerChild = (props) => {
-    return (
-        <UserContext.Consumer>
-            {([{firstName,lastName,avatar},callback]) => {
+function InerChild (props) {   
+    const {user:{firstName,lastName,avatar},setUser}= props
                 return (
                     <div style={{ border: 'inherit', padding: '20px' }}>
                         <p>InnerChild</p>
                         <p>{firstName}  {lastName}</p>
                         <img src={avatar} style ={{width:'100px' , height:'100px'}}/>
-                        <button onClick={callback}>LogOut</button>
+                        <button onClick={setUser}>LogOut</button>
                     
                     </div>
                 )
-            }}
-
-        </UserContext.Consumer>
-    );
 }
 
-export default InerChild;
+
+const wrappedComponent = withUser(InerChild)
+
+export default wrappedComponent;

@@ -6,6 +6,7 @@ import cx from 'classnames';
 import CONSTANTS from '../../constants';
 
 
+
 const { THEMES } = CONSTANTS;
 
 const Tree = (props) => {
@@ -21,6 +22,7 @@ const Tree = (props) => {
                     })
                 return (
                     <div className={cn}>
+                        <p>UserName</p>
                         <p>Tree</p>
                         <Parent />
                     </div>
