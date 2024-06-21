@@ -1,23 +1,18 @@
 import React from 'react';
 import styles from './Header.module.css';
 import UserMenu from './UserMenu';
-import ThemeContext from '../../contexts/ThemeContext';
+import { withTheme } from '../../HOCs/withTheme';
 import CONSTANTS from '../../constants';
 
 const {THEMES} = CONSTANTS;
 
 
 
-const Header = (props) => {
-
-    return (
-        <ThemeContext.Consumer>
-            {([theme, setTheme]) => {
-                
+function Header(props){
+                const {theme, setTheme} = props;
                 const changeTheme = () => {
                     const newTheme = theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
                     setTheme(newTheme)
-
                 }
 
                 return (
@@ -29,13 +24,11 @@ const Header = (props) => {
                         <UserMenu />
                     </div>
                 )
-            }}
-        </ThemeContext.Consumer>
-    )
+            }
+       
 
-}
+const HeaderWithTheme = withTheme(Header)
 
-
-export default Header;
+export default HeaderWithTheme;
 
 
