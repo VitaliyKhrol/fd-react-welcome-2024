@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 20em;
+    border: 10px solid blue
+    
+
+}
+
+.currentDay{
+    display: flex;
+    border : 2px solid blue;
+    flex-direction: column;
+    width: 10em;
+    align-items: center;
+
+}
