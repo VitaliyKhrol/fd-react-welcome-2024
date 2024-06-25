@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import './style.scss';
 import PropTypes from 'prop-types';
 
 class UserCard extends React.Component {
@@ -19,8 +19,8 @@ class UserCard extends React.Component {
                 </div>
 
                 <h2>{first} {last}</h2>
-                <p>{email}</p>
-                <button>Click</button>
+                <p className="desc">{email}</p>
+                <button >Click</button>
             </div>
 
 
