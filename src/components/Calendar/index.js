@@ -25,7 +25,7 @@ class Calendar extends Component {
             <DaysContext.Provider value={[this.state.currentDay, this.handleDayClick ]} >
                 <div className={styles.container}>
                     <CurrentDay day={currentDay} />
-                    <CalendarBody />
+                    <CalendarBody day={currentDay}/>
                 </div>
             </DaysContext.Provider>
 

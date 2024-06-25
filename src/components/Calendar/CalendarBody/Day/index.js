@@ -6,6 +6,15 @@ const Day = (props) => {
     return (
         <DaysContext.Consumer>
             {([currentDay, handleDayClick]) => {
+                if (format (props.day,'PPP')===format (currentDay,'PPP' )){
+                    return (
+                        <td onClick={() => handleDayClick(props.day)} style={{fontWeight:'bold',color:'red'}}>
+                            {format(props.day, 'd')}
+                        </td>
+                    );
+
+                }             
+                                         
 
                 return (
                     <td onClick={() => handleDayClick(props.day)}>
