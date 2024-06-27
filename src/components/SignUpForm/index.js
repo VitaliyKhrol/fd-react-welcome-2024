@@ -1,8 +1,7 @@
 
 import styles from "./SignUp.module.css";
-import React, { Component } from 'react';
 import { SCHEMA } from "../../schemas";
-import { Formik,Form,Field } from "formik";
+import { Formik,Form,Field,ErrorMessage } from "formik";
 
 
 function SignUpForm(props) {
@@ -24,6 +23,7 @@ function SignUpForm(props) {
         <Formik 
         initialValues={initialValues}
         onSubmit={formikSubmit}
+        validationSchema={SCHEMA}
         >
             {(formikProps) => {
                 return (
@@ -33,19 +33,23 @@ function SignUpForm(props) {
                             name="firstName"
                             placeholder="firstName"
                         />
+                        <ErrorMessage name='firstName' component='p'/>
                         <Field
                             name="lastName"
                             placeholder="lastName"
                         />
+                          <ErrorMessage name='lastName'/>
                         <Field
                             name="email"
                             placeholder="email"
                         />
+                          <ErrorMessage name='email'/>
                         <Field
                             name="pass"
                             placeholder="password"
                         />
-                        <button>Send</button>
+                          <ErrorMessage name='pass'/>
+                        <button type="submit">Send</button>
 
                     </Form>
                 )
