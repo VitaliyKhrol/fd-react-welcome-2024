@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import SignUpForm from './components/SignUpForm';
+import UserDashboard from './components/UserDashboard'
 
 
 class App extends Component {
     render() {
         return (
             <div>
-                <SignUpForm/>
+                <UserDashboard/>
                 
             </div>
         );

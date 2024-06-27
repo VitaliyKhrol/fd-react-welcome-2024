@@ -1,20 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import UserCard from '../UserCard'
 
 
 
-class UsersList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isSort: true,
-            filterValue: ''
-        }
-    }
+function UsersList (props) {
+    // const [isSort,setSort] = useState();
+    const [filterValue,setFilterValue] = useState('');
+          
 
-    filterList=()=>{
-        const {filterValue}=this.state;
-        const filtered = this.props.usersList.filter(({ name: {first, last}})=>{
+   const  filterList=()=>{
+             const filtered = props.usersList.filter(({ name: {first, last}})=>{
                 return first.toLowerCase().includes(filterValue) || last.toLowerCase().includes(filterValue)
         })
   
@@ -22,7 +17,7 @@ class UsersList extends Component {
     }
 
 
-    userMap = (userArray) => userArray.map((userObj) => < UserCard user={userObj} key={userObj.email} />);
+   const userMap = (userArray) => userArray.map((userObj) => < UserCard user={userObj} key={userObj.email} />);
 
     // sortUsers = (userArray) => {
           
@@ -32,16 +27,12 @@ class UsersList extends Component {
     // }
 
 
-    changeHandler = ({ target: { value, name } }) => {
-        this.setState({
-            [name]: value
-        });
-        this.filterList()
+  const  changeHandler = ({ target: { value, name } }) => {
+        setFilterValue (value);
+        filterList()
 
     }
 
-    render() {
-        const { filterValue } = this.state
         return (
             <>
                 {/* <button onClick={this.sortUsers()}>Sorted</button> */}
@@ -50,15 +41,15 @@ class UsersList extends Component {
                     placeholder='you name'
                     name='filterValue'
                     value={filterValue}
-                    onChange={this.changeHandler}
+                    onChange={changeHandler}
                 />
                 <div className="card-container">
-                    {this.userMap(this.filterList())}
+                    {userMap(filterList())}
                     
                 </div>
             </>
         )
-    }
+    
 }
 
 export default UsersList;

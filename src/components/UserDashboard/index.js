@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import UsersList from '../UsersList';
 import Spiner from '../Spiner';
@@ -6,81 +6,54 @@ import {getUsers} from '../../api'
 
 
 
-class UserDashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            users: [],
-            error: null,
-            isFetching: true,
-            page: 1
-        }
-    }
-    componentDidMount() {
-        this.getData();
-    }
+function UserDashboard (props) {
+    const [users,setUsers] = useState([]);
+    const [error, setError] = useState(null);
+    const [isFetching,setFetching] = useState(true);
+    const [page,setPage] = useState(1);
 
-    componentDidUpdate(prevProps,prevState){
-        if (this.state.page !== prevState.page){
-           this.getData();  
-        }
-    }
+    useEffect (()=>{
+        getData();
+    },[page])
 
-    getData = () => {
-        const {page} = this.state;
-       getUsers({page})
+   const getData = ()=> {
+        getUsers({page})
             .then((data) => {
-                this.setState({
-                    users: data.results,
-                 })
+               setUsers(data.results)
             }).catch((error) => {
-                this.setState({
-                    error: error,
-                })
+                setError(error)
 
             })
             .finally(()=>{
-                this.setState({
-                    isFetching: false,
-                })
+                setFetching(false)
             })
     }
 
 
-    next =()=>{
-        const {page} = this.state;
-        this.setState({
-            page: page +1
-        })
+   const next =()=>{
+         setPage(page+1)
 
     }
 
-    prev =()=>{
-        const {page} = this.state;
-        if (this.state.page >1){
-            this.setState({
-           page:page-1
-        }) 
+   const prev =()=>{
+        if (page >1){
+            setPage(page-1) 
         }        
-
     }
 
 
-    render() {
-        const { users, error, isFetching, page } = this.state;
-
-        return (
+            return (
             <section className="root">
-                <button onClick={this.prev}>{'<'}</button>
+                <button onClick={prev}>{'<'}</button>
                 {  page  }
-                <button onClick={this.next}>{'>'}</button>
+                <button onClick={next}>{'>'}</button>
            
-                {users && <UsersList usersList={this.state.users}/>}
+                {users && <UsersList usersList={users}/>}
                 {error && <div>{error.message}</div>}
                 {isFetching && <Spiner />}
             </section>
         );
     }
-}
+
 
 export default UserDashboard;
