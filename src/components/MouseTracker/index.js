@@ -7,12 +7,15 @@ const MouseTracker = () => {
     const [count, setCount] = useState(0);
 
 
-    
-    useEffect(() => {
-        console.log('event listener')
-        document.body.addEventListener('mousemove', handleMouseMove);
 
-    }, []);
+    useEffect(() => {
+        console.log('ефект навысили')
+        document.body.addEventListener('mousemove', handleMouseMove);
+        return ()=>{
+            console.log('ефект почистили');
+            document.body.removeEventListener('mousemove', handleMouseMove);
+        }
+    },[]);
 
 
     const handleMouseMove = ({ clientX, clientY }) => {
@@ -28,6 +31,7 @@ const MouseTracker = () => {
         setCount(count + 1)
     }
 
+    console.log('рендер')
 
     return (
         <div>
