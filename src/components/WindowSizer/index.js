@@ -1,34 +1,31 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
-class WindowSizer extends Component {
+const WindowSizer = () => {
 
-constructor (props){
-    super(props)
-    this.state={
-        x: window.innerWidth,
-        y: window.innerHeight
+    const [coordinates, setCoordinates] = useState({ x: window.innerWidth, y: window.innerHeight })
+
+    useEffect(() => {
+        window.addEventListener('resize', resizeHadler);
+        return () => {
+            window.removeEventListener('resize', resizeHadler)
+        }
+    }, [])
+
+    const resizeHadler = () => {
+        setCoordinates({
+            x: window.innerWidth,
+            y: window.innerHeight
+        })
     }
-}
 
-componentDidMount(){
-    window.addEventListener('resize',this.resizeHadler)
-}
+    return (
+        <>
+            <p>X: {coordinates.x}</p>
+            <p>Y: {coordinates.y}</p>
+        </>
 
-componentWillUnmount(){
-    window.removeEventListener('resize',this.resizeHadler)
-}
+    )
 
-resizeHadler=()=>{
-    this.setState ({
-        x: window.innerWidth,
-        y: window.innerHeight
-    })
-}
-
-
-    render() {
-        return this.props.children(this.state)
-    }
 }
 
 export default WindowSizer;
