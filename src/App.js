@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import WindowSizer from './components/WindowSizer';
 import MouseTracker from './components/MouseTracker';
+import Timer from './components/Timer'
 
 
 function App (props) {
@@ -8,7 +9,7 @@ function App (props) {
   
     return (
         <>
-        {isVisible&&<MouseTracker/>}
+        {isVisible&&<Timer/>}
         
         </>
          

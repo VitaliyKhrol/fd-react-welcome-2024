@@ -1,66 +1,43 @@
-import React, { Component } from 'react';
+
 import { format, addSeconds } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+
+const Timer = (props) => {
+    const [time, setTime] = useState(new Date(0, 0, 0, 0, 0, 0, 0));
+    const [isRunning, setRunning] = useState(false);
 
 
-class Timer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            time: new Date(0, 0, 0, 0, 0, 0, 0),
-            isRunning: true,
+    useEffect(() => {
+        let intervalId= null;
+        if (isRunning) {
+            intervalId = setTimeout(() => {
+                const newdate = addSeconds(time, 1)
+                setTime(newdate)
+            }, 1000);
         }
-        this.intervalId = null;
+        return ()=>{
+            clearTimeout(intervalId)
+        }
+    },)
+
+
+    const clear = () => {
+        setTime(new Date(0, 0, 0, 0, 0, 0, 0))
+    }
+
+    const switchRunning = () => {
+        setRunning(!isRunning)
 
     }
 
-    start = () => {
-            this.intervalId = setInterval(() => {
-            const { time } = this.state;
-            const newdate = addSeconds(time, 1)
-            this.setState({
-                time: newdate,
-                isRunning:false,
-            })
-        }, 1000);
-      }
+    return (
+        <div>
+            <h1>{format(time,'HH:mm:ss')}</h1>
+            <button onClick={switchRunning}>{isRunning ? 'Stop' : 'Start'}</button>
+            <button onClick={clear}>CLEAR</button>
+        </div>
+    );
 
-    
-    stop = () => {
-        clearInterval(this.intervalId)
-        this.setState({
-            isRunning:true,
-        })
-    }
-
-    clickHandler=()=>{
-        const {isRunning } = this.state;
-        if (isRunning){
-            this.start()
-        } else {this.stop()}
-
-    }
-
-    clear = ()=>{
-        this.stop();
-        this.setState({
-            time: new Date(0, 0, 0, 0, 0, 0, 0),
-        })
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.intervalId)
-    }
-
-    render() {
-        const { time,isRunning} = this.state;
-        return (
-            <div>
-                <h1>{format(time, 'HH:mm:ss')}</h1>
-                <button onClick={this.clickHandler}>{isRunning ? 'Start' : 'Stop'}</button>
-                <button onClick={this.clear}>CLEAR</button>
-            </div>
-        );
-    }
 }
 
 export default Timer;

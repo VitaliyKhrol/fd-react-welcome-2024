@@ -7,7 +7,7 @@ const Counter = () => {
 
     useEffect(() => {
         const handleClick = () => {
-            setCount((count)=> count + step)
+            setCount((count) => count + step)
         }
         console.log('effect created')
         window.addEventListener('click', handleClick)
