@@ -2,15 +2,10 @@ import React from "react";
 import './style.scss';
 import PropTypes from 'prop-types';
 
-class UserCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
-    render() {
-
-        const { user: { name: { first, last }, picture: { medium }, email } } = this.props;
-
+const UserCard = (props) => {
+ 
+        const { user: { name: { first, last }, picture: { medium }, email } } = props;
         return (
 
             <div className="card-wrapper">
@@ -22,12 +17,9 @@ class UserCard extends React.Component {
                 <p className="desc">{email}</p>
                 <button >Click</button>
             </div>
-
-
         )
     }
 
-}
 
 UserCard.defaultProps = {
     user: {

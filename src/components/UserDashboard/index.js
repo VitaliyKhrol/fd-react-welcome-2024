@@ -40,7 +40,7 @@ function UserDashboard(props) {
     return (
         <section className="root">
             <button onClick={prev}>{'<'}</button>
-            {page}
+             {page} 
             <button onClick={next}>{'>'}</button>
 
             {users && <UsersList usersList={users} />}
