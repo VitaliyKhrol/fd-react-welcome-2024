@@ -10,7 +10,7 @@ function App (props) {
   
     return (
         <>
-        {isVisible&&<UserDashboard/>}
+        {isVisible&&<Timer/>}
         
         </>
          

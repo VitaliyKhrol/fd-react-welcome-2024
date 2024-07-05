@@ -11,14 +11,13 @@ const Timer = (props) => {
         let intervalId= null;
         if (isRunning) {
             intervalId = setTimeout(() => {
-                const newdate = addSeconds(time, 1)
-                setTime(newdate)
+                   setTime (time => addSeconds(time, 1))
             }, 1000);
         }
         return ()=>{
             clearTimeout(intervalId)
         }
-    },)
+    },);
 
 
     const clear = () => {
