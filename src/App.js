@@ -1,21 +1,30 @@
-import React, { useState} from 'react';
-import WindowSizer from './components/WindowSizer';
-import MouseTracker from './components/MouseTracker';
-import Timer from './components/Timer'
-import UserDashboard from './components/UserDashboard';
+import React, { useState } from 'react';
+import Tree from './components/Tree';
+import UserContext from './contexts/UserContext';
+import ThemeContext from './contexts/ThemeContext';
+import CONSTANTS from './constants';
+
+const {THEMES} = CONSTANTS;
 
 
-function App (props) {
-    const [isVisible, setVisible] = useState(true);
-  
+function App(props) {
+    const [user, setUser] = useState({
+        firstName: 'John Doe'
+    });
+    const [theme, setTheme] = useState(THEMES.LIGHT);
+    
+
+
     return (
-        <>
-        {isVisible&&<Timer/>}
-        
-        </>
-         
-        );
-    }
+        <ThemeContext.Provider value ={[theme,setTheme]}>
+            <UserContext.Provider value={[user, setUser]}>
+                <Tree />
+            </UserContext.Provider>
+        </ThemeContext.Provider>
+
+
+    );
+}
 
 
 export default App;
