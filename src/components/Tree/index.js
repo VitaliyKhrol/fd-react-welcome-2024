@@ -22,9 +22,9 @@ function Tree(props) {
         })
 
 
-    const changeTheme = () => {
-        setTheme(theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)
-    }
+    const changeTheme = useCallback(() => {
+        setTheme(theme => theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)
+    },[])
 
     const memoizedFunc = useCallback(() => {
         console.log(props.value)
