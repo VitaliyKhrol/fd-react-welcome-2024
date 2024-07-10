@@ -4,13 +4,14 @@ import UserContext from './contexts/UserContext';
 import ThemeContext from './contexts/ThemeContext';
 import CONSTANTS from './constants';
 import UserDashboard from './components/UserDashboard';
-
+import UserLoader from './components/UserLoader'
+import { getUsers } from './api/user.js'
 
 
 function App(props) {
     
     return (
-        <UserDashboard/>
+        <UserLoader/>
 
     );
 }

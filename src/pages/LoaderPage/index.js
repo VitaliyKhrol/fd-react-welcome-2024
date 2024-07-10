@@ -1,5 +1,5 @@
 import React from 'react';
-// import UserLoader from '../../components/UserLoader';
+import UserLoader from '../../components/UserLoader';
 // import PhonesLoader from '../../components/PhonesLoader';
 import DataProvader from '../../components/DataProvider';
 

@@ -1,36 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
+import useData from '../../hooks/useData';
+import { getUsers } from '../../api/user.js';
 
-class UserLoader extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            isFething: true,
-            error: null
 
-        }
-    }
 
-    componentDidMount(){
-      this.props.loadData()
-        .then (data =>{
-            this.setState ({
-                data: data})
-        }).catch(error =>{
-            this.setState({
-                error: error
-            })
-        }).finally(() =>{
-            this.setState({
-                isFething: false
-            })
-        })
-    }
+const UserLoader = (props) => {
 
-    render() {
-        const layout = this.props.renderThis(this.state);
-        return layout
-    }
+    const { data, isFething, error } = useData(getUsers);
+
+    return(
+        <ul>
+            {data.map((el)=><li key={el.id}>{el.name}</li>)}
+        </ul>
+        )
+    
 }
 
 export default UserLoader;

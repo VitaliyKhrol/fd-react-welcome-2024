@@ -6,7 +6,6 @@ import UserCard from '../UserCard'
 function UsersList(props) {
     const [isSort, setSort] = useState(true);
     const [filterValue, setFilterValue] = useState('');
-
     const filterList = () => {
         const filtered = props.users.filter(({ name: { first, last } }) => {
             return first.toLowerCase().includes(filterValue) || last.toLowerCase().includes(filterValue)
