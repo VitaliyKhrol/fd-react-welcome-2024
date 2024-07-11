@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import useWindowSizer from '../../hooks/useWindowSizer';
 
-const WindowSizer = () => {
+const WindowSizer = (props) => {
 
-    const [coordinates, setCoordinates] = useState({ x: window.innerWidth, y: window.innerHeight })
-
-    useEffect(() => {
-        window.addEventListener('resize', resizeHadler);
-        return () => {
-            window.removeEventListener('resize', resizeHadler)
-        }
-    }, [])
-
-    const resizeHadler = () => {
-        setCoordinates({
-            x: window.innerWidth,
-            y: window.innerHeight
-        })
-    }
+    const {coordinates} = useWindowSizer();
+    console.log(coordinates)
 
     return (
         <>
